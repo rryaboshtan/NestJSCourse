@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
    providers: [AuthService],
    imports: [
       forwardRef(() => UsersModule),
+      // UsersModule,
       JwtModule.register({
          secret: process.env.PRIVATE_KEY || 'SECRET',
          signOptions: {
