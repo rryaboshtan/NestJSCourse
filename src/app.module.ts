@@ -5,7 +5,7 @@ import { User } from './users/users.model';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { Role } from './roles/roles.model';
-import { UserRoles } from './roles/userRoles';
+import { UserRoles } from './roles/userRoles.model';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
