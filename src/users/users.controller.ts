@@ -20,7 +20,11 @@ export class UsersController {
    // @UsePipes(ValidationPipe)
    @Post()
    create(@Body() userDto: CreateUserDto) {
-      return this.usersService.createUser(userDto);
+      try {
+         return this.usersService.createUser(userDto);
+      } catch (error) {
+         console.log(error);
+      }
    }
 
    @ApiOperation({ summary: 'Get all users' })
@@ -29,17 +33,24 @@ export class UsersController {
    @UseGuards(RolesGuard)
    @Get()
    getAll() {
-      return this.usersService.getAllUsers();
+      try {
+         return this.usersService.getAllUsers();
+      } catch (error) {
+         console.log(error);
+      }
    }
 
    @ApiOperation({ summary: 'Give the role' })
-      
    @ApiResponse({ status: 200 })
    @Roles('ADMIN')
    @UseGuards(RolesGuard)
    @Post('/role')
    addRole(@Body() dto: AddRoleDto) {
-      return this.usersService.addRole(dto);
+      try {
+         return this.usersService.addRole(dto);
+      } catch (error) {
+         console.log(error);
+      }
    }
 
    @ApiOperation({ summary: 'Ban user' })
@@ -48,6 +59,10 @@ export class UsersController {
    @UseGuards(RolesGuard)
    @Post('/ban')
    ban(@Body() dto: BanUserDto) {
-      return this.usersService.ban(dto);
+      try {
+         return this.usersService.ban(dto);
+      } catch (error) {
+         console.log(error);
+      }
    }
 }

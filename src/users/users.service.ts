@@ -15,11 +15,15 @@ export class UsersService {
       private roleService: RolesService
    ) {}
    async createUser(dto: CreateUserDto) {
-      const user = await this.userRepository.create(dto);
-      const role = await this.roleService.getRoleByValue('ADMIN');
-      await user.$set('roles', [role]);
-      user.roles = [role];
-      return user;
+      try {
+         const user = await this.userRepository.create(dto);
+         const role = await this.roleService.getRoleByValue('ADMIN');
+         await user.$set('roles', [role]);
+         user.roles = [role];
+         return user;
+      } catch (error) {
+         console.log(error);
+      }
    }
 
    async getAllUsers() {
