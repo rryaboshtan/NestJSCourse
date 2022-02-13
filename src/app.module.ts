@@ -10,14 +10,19 @@ import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
 import { Post } from './posts/posts.model';
 import { FilesModule } from './files/files.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 
 @Module({
    controllers: [],
    providers: [],
    imports: [
       ConfigModule.forRoot({
-        //  envFilePath: `${process.env.NODE_ENV}`,
+         //  envFilePath: `${process.env.NODE_ENV}`,
          envFilePath: '.env',
+      }),
+      ServeStaticModule.forRoot({
+         rootPath: path.resolve(__dirname, 'static'),
       }),
       SequelizeModule.forRoot({
          dialect: 'postgres',
